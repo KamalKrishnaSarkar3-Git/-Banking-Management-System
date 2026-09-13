@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}
+Transaction Report
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>📊 Monthly Transaction Report</h1>
+
+        <a href="{{ url_for('dashboard') }}">
+            ← Dashboard
+        </a>
+
+    </div>
+
+    {% if reports %}
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Date & Time</th>
+                <th>Transaction Type</th>
+                <th>Reference</th>
+                <th>Deposit</th>
+                <th>Transfer</th>
+                <th>Withdrawal</th>
+                <th>Net Balance</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        {% for report in reports %}
+
+            <tr>
+
+                <!-- EXACT DATE + TIME -->
+                <td>
+                    {{ report.created_at.strftime('%d-%m-%Y %I:%M:%S %p') }}
+                </td>
+
+                <!-- TRANSACTION TYPE -->
+                <td>
+                    {{ report.transaction_type|capitalize }}
+                </td>
+
+                <!-- REFERENCE -->
+                <td>
+                    {{ report.reference }}
+                </td>
+
+                <!-- DEPOSIT -->
+                <td class="deposit">
+
+                    {% if report.transaction_type == 'deposit' %}
+                        ₹{{ "%.2f"|format(report.amount) }}
+                    {% else %}
+                        ₹0.00
+                    {% endif %}
+
+                </td>
+
+                <!-- TRANSFER -->
+                <td class="transfer">
+
+                    {% if report.transaction_type == 'transfer' %}
+                        ₹{{ "%.2f"|format(report.amount) }}
+                    {% else %}
+                        ₹0.00
+                    {% endif %}
+
+                </td>
+
+                <!-- WITHDRAWAL -->
+                <td class="withdrawal">
+
+                    {% if report.transaction_type == 'withdraw' %}
+                        ₹{{ "%.2f"|format(report.amount) }}
+                    {% else %}
+                        ₹0.00
+                    {% endif %}
+
+                </td>
+
+                <!-- BALANCE AFTER THIS TRANSACTION -->
+                <td>
+                    ₹{{ "%.2f"|format(report.net_balance) }}
+                </td>
+
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% else %}
+
+    <div class="empty">
+
+        <h2>📭 No Transactions Found</h2>
+
+        <p>
+            There are no transactions available.
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+
+{% block content %}
+
+<div class="dashboard-header">
+
+    <div>
+
+        <h1>
+            Hello, {{ account.full_name }} 👋
+        </h1>
+
+        <p>
+            Welcome to your SecureBank dashboard.
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="balance-card">
+
+    <p>
+        Available Balance
+    </p>
+
+    <h2>
+        ₹{{ "%.2f"|format(account.balance) }}
+    </h2>
+
+    <p>
+        Account:
+        <strong>
+            {{ account.account_number }}
+        </strong>
+    </p>
+
+</div>
+
+
+<div class="action-grid">
+
+    <a
+        href="{{ url_for('deposit') }}"
+        class="action-card"
+    >
+        <span>💰</span>
+        <h3>Deposit</h3>
+        <p>Add demo funds</p>
+    </a>
+
+
+    <a
+        href="{{ url_for('withdraw') }}"
+        class="action-card"
+    >
+        <span>💸</span>
+        <h3>Withdraw</h3>
+        <p>Withdraw demo funds</p>
+    </a>
+
+
+    <a
+        href="{{ url_for('transfer') }}"
+        class="action-card"
+    >
+        <span>🔄</span>
+        <h3>Transfer</h3>
+        <p>Transfer to another account</p>
+    </a>
+
+
+    <a
+        href="{{ url_for('transaction_report') }}"
+        class="action-card"
+    >
+        <span>📜</span>
+        <h3>MonthlyTransactions</h3>
+        <p>View transaction history</p>
+    </a>
+
+</div>
+
+
+<div class="info-card">
+
+    <h3>
+        Account Information
+    </h3>
+
+    <p>
+        <strong>Name:</strong>
+        {{ account.full_name }}
+    </p>
+
+    <p>
+        <strong>Email:</strong>
+        {{ account.email }}
+    </p>
+
+    <p>
+        <strong>Phone:</strong>
+        {{ account.phone or "Not provided" }}
+    </p>
+
+    <p>
+        <strong>Status:</strong>
+        {{ account.status }}
+    </p>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {% block title %}SecureBank{% endblock %}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        🏦 SecureBank
+    </div>
+
+    <nav>
+
+        <a href="{{ url_for('index') }}">
+            Home
+        </a>
+
+        {% if session.get('user_id') %}
+
+            <a href="{{ url_for('dashboard') }}">
+                Dashboard
+            </a>
+
+            <!-- <a href="{{ url_for('transactions') }}">
+                Transactions
+            </a> -->
+
+            <a href="{{ url_for('profile') }}">
+                Profile
+            </a>
+
+            <a href="{{ url_for('change_password') }}">
+                Change Password
+            </a>
+
+            <a href="{{ url_for('logout') }}">
+                Logout
+            </a>
+
+        {% elif session.get('admin_id') %}
+
+            <a href="{{ url_for('admin_dashboard') }}">
+                Dashboard
+            </a>
+
+            <a href="{{ url_for('admin_add_branch') }}">
+                + Add Branch
+            </a>
+
+            <a href="{{ url_for('admin_logout') }}">
+                Logout
+            </a>
+
+            <!-- <a href="{{ url_for('transactions') }}">
+                Transactions
+            </a> -->
+
+            <!-- <a href="{{ url_for('profile') }}">
+                Profile
+            </a>
+
+            <a href="{{ url_for('change_password') }}">
+                Change Password
+            </a>
+
+            <a href="{{ url_for('logout') }}">
+                Logout
+            </a> -->
+            
+
+        {% else %}
+
+            <a href="{{ url_for('login') }}">
+                Login
+            </a>
+
+            <a href="{{ url_for('register') }}">
+                Register
+            </a>
+
+        {% endif %}
+
+    </nav>
+
+</header>
+
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+
+    {% if messages %}
+
+        <div class="flash-container">
+
+            {% for category, message in messages %}
+
+                <div class="flash {{ category }}">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% endif %}
+
+{% endwith %}
+
+
+<main class="container">
+
+    {% block content %}
+
+    {% endblock %}
+
+</main>
+
+
+<footer>
+
+    <p>
+        © 2026 SecureBank — Educational Project
+    </p>
+
+</footer>
+
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+
+</html>

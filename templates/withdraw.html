@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}
+Withdraw
+{% endblock %}
+
+
+{% block content %}
+
+<div class="form-container">
+
+    <h2>
+        💸 Withdraw Funds
+    </h2>
+
+    <p class="form-subtitle">
+        Withdraw demo funds from your account.
+    </p>
+
+
+    <form
+        method="POST"
+        action="{{ url_for('withdraw') }}"
+    >
+
+        <label>
+            Amount
+        </label>
+
+        <input
+            type="number"
+            name="amount"
+            min="0.01"
+            step="0.01"
+            placeholder="Enter amount"
+            required
+        >
+
+
+        <button
+            type="submit"
+            class="btn full"
+        >
+            Withdraw
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

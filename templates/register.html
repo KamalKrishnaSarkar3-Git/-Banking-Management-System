@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}
+Create Account
+{% endblock %}
+
+
+{% block content %}
+
+<div class="form-container">
+
+    <h2>
+        Create Your Account
+    </h2>
+
+    <p class="form-subtitle">
+        Register for a SecureBank demo account.
+    </p>
+
+
+    <form method="POST" action="{{ url_for('register') }}" enctype="multipart/form-data">
+
+        <label>
+            Full Name
+        </label>
+
+        <input type="text" name="full_name" placeholder="Enter your full name" required>
+
+        <label>
+            Father Name
+        </label>
+
+        <input type="text" name="father_name" placeholder="Enter your father name" required>
+
+
+        <label>
+            Email
+        </label>
+
+        <input type="email" name="email" placeholder="Enter your email" required>
+
+
+        <label>
+            Phone
+        </label>
+
+        <input type="tel" name="phone" placeholder="Enter phone number">
+
+
+        <label>
+            Password
+        </label>
+
+        <input type="password" name="password" id="password" placeholder="Minimum 8 characters" required minlength="8">
+
+
+        <label>
+            Confirm Password
+        </label>
+
+        <input type="password" name="confirm_password" id="confirm_password" placeholder="Repeat password" required>
+
+
+        <label>
+            Branch Name
+        </label>
+
+        <select name="branch" required>
+            <option value="">
+                Select Branch
+            </option>
+
+            {% for branch in branchs %}
+
+            <option value="{{ branch.id }}">
+
+                {{ branch.name }}
+
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+        <label>
+            Account Type
+        </label>
+        <select name="account_type" id="">
+            <option value="">Select Option</option>
+            <option value="saving">Saving</option>
+            <option value="current">Current</option>
+            <option value="fixed">Fixed Deposit</option>
+        </select>
+
+
+
+        <label>
+            Profile Image
+        </label>
+
+        <input type="file" name="image" accept="image/png,image/jpeg,image/jpg" required>
+
+
+        <button type="submit" class="btn full">
+            Create Account
+        </button>
+
+    </form>
+
+
+    <p class="form-footer">
+
+        Already have an account?
+
+        <a href="{{ url_for('login') }}">
+            Login
+        </a>
+
+    </p>
+
+</div>
+
+{% endblock %}

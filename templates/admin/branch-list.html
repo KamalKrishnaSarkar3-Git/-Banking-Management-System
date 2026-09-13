@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}
+Admin Dashboard
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Bank Branches</h1>
+
+        <a
+            href="{{ url_for('admin_add_branch') }}"
+            class="btn">
+            + Add New Branch
+        </a>
+
+    </div>
+
+
+    <table border="3">
+
+        <thead>
+
+            <tr>
+
+                <th>ID</th>
+                <th>Branch Name</th>
+                <th>Email</th>
+                <th>IFSC</th>                
+                <th>Status</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for branch in branches %}
+
+            <tr>
+
+                <td>
+                    {{ branch.id }}
+                </td>
+
+                <td>
+                    {{ branch.name }}
+                </td>
+
+                <td>
+                    {{ branch.email }}
+                </td>
+
+                <td>
+                    {{ branch.ifsc }}
+                </td>
+
+
+                <td>
+                    <!-- {{ branch.status }} -->
+
+                    {% if branch.status == 'Active' %}
+
+                        <span class="active">
+                            Active
+                        </span>
+
+                    {% else %}
+
+                        <span class="inactive">
+                            Inactive
+                        </span>
+
+                    {% endif %}
+
+                </td>
+
+            </tr>
+
+            {% else %}
+
+            <tr>
+
+                <td colspan="7">
+                    No branches found.
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+{% endblock %}

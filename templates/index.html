@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}
+SecureBank - Home
+{% endblock %}
+
+
+{% block content %}
+
+<section class="hero">
+
+    <div>
+
+        <h1>
+            Welcome to SecureBank
+        </h1>
+
+        <p>
+            A simple banking management system
+
+        </p>
+
+        <div class="hero-buttons">
+
+            <a
+                href="{{ url_for('register') }}"
+                class="btn"
+            >
+                Open Account
+            </a>
+
+            <a
+                href="{{ url_for('login') }}"
+                class="btn secondary"
+            >
+                Login
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="features">
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            🔐
+        </div>
+
+        <h3>
+            Secure Login
+        </h3>
+
+        <p>
+            Passwords are securely hashed.
+        </p>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            💰
+        </div>
+
+        <h3>
+            Manage Money
+        </h3>
+
+        <p>
+            Deposit and withdraw demo funds.
+        </p>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            🔄
+        </div>
+
+        <h3>
+            Transfer
+        </h3>
+
+        <p>
+            Transfer demo funds between accounts.
+        </p>
+
+    </div>
+
+</section>
+
+{% endblock %}

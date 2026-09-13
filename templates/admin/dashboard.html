@@ -1,0 +1,232 @@
+{% extends "base.html" %}
+
+{% block title %}
+Admin Dashboard
+{% endblock %}
+
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+
+        <h1>
+            Admin Dashboard
+        </h1>
+
+        <p>
+            Welcome, {{ session.get('admin_username') }}
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="stats-grid">
+
+    <a href="{{ url_for('admin_branch_list') }}" class="stat-card-link">
+        <div class="stat-card">
+            <span>
+                🏦
+            </span>
+
+            <h3>
+                {{ total_branch }}
+            </h3>
+
+            <p>
+                Branchs
+            </p>
+        </div>
+    </a>
+
+
+    <a href="{{ url_for('admin_customer_list') }}" class="stat-card-link">
+        <div class="stat-card">
+
+            <span>
+                👥
+            </span>
+
+            <h3>
+                {{ total_users }}
+            </h3>
+
+            <p>
+                Customers
+            </p>
+
+        </div>
+    </a>
+
+
+    <div class="stat-card">
+
+        <span>
+            🏦
+        </span>
+
+        <h3>
+            {{ total_accounts }}
+        </h3>
+
+        <p>
+            Accounts
+        </p>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <span>
+            💰
+        </span>
+
+        <h3>
+            ₹{{ "%.2f"|format(total_balance) }}
+        </h3>
+
+        <p>
+            Total Balance
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- <div class="table-container">
+
+    <h2>
+        Customer Accounts
+    </h2>
+
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>
+                    Name
+                </th>
+
+                <th>
+                    Email
+                </th>
+
+                <th>
+                    Account
+                </th>
+
+                <th>
+                    CIF
+                </th>
+
+                <th>
+                    IFSC
+                </th>
+
+                <th>
+                    Branch Name
+                </th>
+
+                <th>
+                    Balance
+                </th>
+
+                <th>
+                    Status
+                </th>
+
+                <th>
+                    Action
+                </th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            {% for user in users %}
+
+            <tr>
+
+                <td>
+                    {{ user.full_name }}
+                </td>
+
+                <td>
+                    {{ user.email }}
+                </td>
+
+                <td>
+                    {{ user.account_number }}
+                </td>
+
+                <td>
+                    {{ user.cif }}
+                </td>
+
+                <td>
+                    {{ user.ifsc }}
+                </td>
+
+                <td>
+                    {{ user.branch_name }}
+                </td>
+
+                <td>
+                    ₹{{ "%.2f"|format(user.balance) }}
+                </td>
+
+                <td>
+                    {{ user.status }}
+                </td>
+
+                <td>
+
+                    <form
+                        method="POST"
+                        action="{{
+                            url_for(
+                                'toggle_account',
+                                account_id=user.account_id
+                            )
+                        }}"
+                    >
+
+                        <button
+                            type="submit"
+                            class="small-btn"
+                        >
+
+                            {% if user.status == "active" %}
+                                Block
+                            {% else %}
+                                Activate
+                            {% endif %}
+
+                        </button>
+
+                    </form>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div> -->
+
+{% endblock %}

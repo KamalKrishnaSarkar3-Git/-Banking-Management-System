@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}
+Admin Login
+{% endblock %}
+
+
+{% block content %}
+
+<div class="form-container">
+
+    <h2>
+        🔐 Admin Login
+    </h2>
+
+    <p class="form-subtitle">
+        SecureBank administration panel.
+    </p>
+
+
+    <form
+        method="POST"
+        action="{{ url_for('admin_login') }}"
+    >
+
+        <label>
+            Username
+        </label>
+
+        <input
+            type="text"
+            name="username"
+            placeholder="Admin username"
+            required
+        >
+
+
+        <label>
+            Password
+        </label>
+
+        <input
+            type="password"
+            name="password"
+            placeholder="Admin password"
+            required
+        >
+
+
+        <button
+            type="submit"
+            class="btn full"
+        >
+            Admin Login
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}
